@@ -4,7 +4,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-center text-white mt-5">
-      <div className="bg-gray-800 container px-4 pt-4">
+      <div className="bg-gray-800 flex items-center justify-center flex-col text-center container px-4 pt-4">
         <div className="mb-3 flex justify-center items-center text-center">
           <Link
             href="https://www.instagram.com/furkannonay/"
@@ -58,7 +58,7 @@ const Footer = () => {
             </svg>
           </Link>
         </div>
-        <div className="p-1 items-center justify-center text-center bg-gray-800">
+        <div className="p-1 flex items-center justify-center text-center bg-gray-800">
           © 2023 Copyright : Schwayzer
         </div>
       </div>
