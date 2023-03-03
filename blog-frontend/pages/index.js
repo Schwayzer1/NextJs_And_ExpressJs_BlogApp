@@ -1,10 +1,24 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import Card from "@/components/Card";
+import PostList from "@/components/PostList";
+import { useState } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import AddPostForm from "@/components/AddPostForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [modal, setmodal] = useState(false);
+  const { data: session } = useSession();
+
+  const handleClick = () => {
+    if (modal) {
+      setmodal(false);
+    } else if (modal === false) {
+      setmodal(true);
+    }
+  };
+
   return (
     <>
       <Head>
@@ -13,8 +27,27 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="height flex justify-center items-center text-center">
-        <Card />
+      {session ? (
+        <div className="flex justify-end text-center ">
+          <button
+            onClick={handleClick}
+            href="#"
+            className=" bg-gray-800 text-gray-100 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-5 focus:ring-gray-300 "
+          >
+            Add New Post
+          </button>
+        </div>
+      ) : null}
+      <div className="height flex justify-center">
+        <div
+          className={
+            modal
+              ? "w-screen mx-16 mt-5 justify-center items-center"
+              : "flex justify-center items-center text-center"
+          }
+        >
+          {modal ? <AddPostForm /> : <PostList />}
+        </div>
       </div>
     </>
   );

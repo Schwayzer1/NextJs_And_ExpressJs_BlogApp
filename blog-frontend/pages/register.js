@@ -1,5 +1,6 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Link from "next/link";
 
 function Register() {
   const { data: session } = useSession();
@@ -7,8 +8,17 @@ function Register() {
 
   if (session) {
     return (
-      <div className="height items-center text-center">
-        <p>Welcome, {session.user.name} 😊</p>
+      <div className="height flex justify-center items-center text-center flex-col">
+        <p>Welcome, {session.user.name},you can add new post 😊</p>
+        <div className=""></div>
+        <Link
+          href="/"
+          type="button"
+          className=" bg-gray-800 text-gray-100 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium mx-5 focus:ring-gray-300 mt-5"
+        >
+          {" "}
+          Go Home{" "}
+        </Link>
       </div>
     );
   } else {
@@ -16,7 +26,7 @@ function Register() {
       <div className="">
         <div className=" height flex justify-center items-center my-auto flex-col">
           <h1 className="text-4xl p-4 m-4 ">
-            You are not sign in, please sign in 😊{" "}
+            You are not sign in If you want to add a post, please sign in 😊{" "}
           </h1>
           <button
             onClick={() => signIn()}
