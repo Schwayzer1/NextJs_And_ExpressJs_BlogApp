@@ -1,6 +1,9 @@
 import React from "react";
+import axios from "axios";
 
 const AddPostForm = () => {
+  const handleSubmit = () => {};
+
   return (
     <form>
       <div className="relative z-0 w-full mb-6 group">
@@ -69,6 +72,7 @@ const AddPostForm = () => {
       </div>
       <div className="text-center">
         <button
+          onClick={handleSubmit}
           type="submit"
           className=" focus:ring-4 focus:outline-none focus:ring-gray-300 w-full sm:w-auto  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  bg-gray-800 text-gray-100 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-md font-medium"
         >

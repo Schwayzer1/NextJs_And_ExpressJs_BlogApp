@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { addArticle } from "@/features/blogSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Card = () => {
+  // const [state, setstate] = useState({
+  //   title: "furkan",
+  //   subtitle: "onay",
+  // });
+
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(addArticle(state));
+  // }, []);
+
+  // const { blog } = useSelector((state) => state.blog);
+
+  // console.log(blog);
+
   return (
     <div>
       <div class=" max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ml-2">
