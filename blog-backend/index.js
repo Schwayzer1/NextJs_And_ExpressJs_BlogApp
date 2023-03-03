@@ -3,8 +3,10 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const postRoutes = require("./routes/posts");
+const dotenv = require("dotenv");
 
 const app = express(); // express ile bir express server oluşturdu
+dotenv.config();
 
 app.use(bodyParser.json({ limit: "30mb", extended: true })); // JSON formatında gelen veriyi kabul et belirtilen limit ile
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -20,11 +22,9 @@ app.get("/", (req, res) => {
 app.use("/posts", postRoutes);
 
 const PORT = 5000; // backendin çalışacağı port
-const CONNECTION_URL =
-  "mongodb+srv://Schwayzer:Furkan123-@cluster1.ylrwfw6.mongodb.net/?retryWrites=true&w=majority";
 
 mongoose
-  .connect(CONNECTION_URL, {
+  .connect(process.env.CONNECTION_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
