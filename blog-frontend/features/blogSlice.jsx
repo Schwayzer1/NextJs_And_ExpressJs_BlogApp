@@ -8,12 +8,12 @@ const blogPosts = createSlice({
   name: "blog",
   initialState,
   reducers: {
-    // allPosts: (state, { payload }) => {
-    //   state.blog = payload;
-    // },
-    addArticle: (state, { payload }) => {
-      state.blog = [...state.blog, payload];
+    allPosts: (state, { payload }) => {
+      state.blog = payload;
     },
+    // addArticle: (state, { payload }) => {
+    //   state.blog = [...state.blog, payload];
+    // },
     // addPost: (state, { payload }) => {
     //   console.log(state.blog);
     //   state.blog = [...state.blog, payload];
@@ -31,5 +31,5 @@ const blogPosts = createSlice({
   },
 });
 
-export const { allPosts, addArticle } = blogPosts.actions;
+export const { allPosts } = blogPosts.actions;
 export default blogPosts.reducer;
