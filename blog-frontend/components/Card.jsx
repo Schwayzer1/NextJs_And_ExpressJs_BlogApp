@@ -1,76 +1,31 @@
-import React, { useEffect, useState } from "react";
-// import { addArticle } from "@/features/blogSlice";
-// import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
+import React from "react";
 
-const Card = () => {
-  // const [state, setstate] = useState({
-  //   title: "furkan",
-  //   subtitle: "onay",
-  // });
-
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(addArticle(state));
-  // }, []);
-
-  // const { blog } = useSelector((state) => state.blog);
-
-  // console.log(blog);
-
-  const url = "http://localhost:5000/posts";
-
-  const [data, setData] = useState({});
-
-  const getData = () => {
-    axios.get(url, data).then((res) => {
-      console.log(res.data.title);
-    });
-  };
-
-  useEffect(() => {
-    getData();
-    console.log(data);
-  }, []);
+const Card = ({ data, setData }) => {
+  console.log(data, "CARD");
 
   return (
-    <div>
-      <div class=" max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ml-2">
-        <a href="#">
-          <img class="rounded-t-lg" src={data.image} alt="" />
-        </a>
-        <div class="p-5">
-          <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              {data.title}
-            </h5>
-          </a>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {data.content}
-          </p>
-          <a
-            href="#"
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Read more
-            <svg
-              aria-hidden="true"
-              class="w-4 h-4 ml-2 -mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
+    <>
+      {data?.map((item) => {
+        return (
+          <article className="shadow-md max-w-sm transform hover:-translate-y-1 duration-300 hover:shadow-xl cursor-pointer m-5 border-4">
+            <div className="overflow-hidden" bis_skin_checked={1}>
+              <img className="max-h-60 p-5 max-w-sm " src={item.image} alt="" />
+            </div>
+            <div className="p-7 my-auto pb-12 " bis_skin_checked={1}>
+              <h1 className="text-4xl font-semibold text-gray-700">
+                {item.title}
+              </h1>
+              <h6 className="text-xl font-semibold text-gray-700">
+                {item.subTitle}
+              </h6>
+              <p className="text-xl font-light leading-relaxed text-gray-400 mt-5">
+                {item.content}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </>
   );
 };
 

@@ -9,5 +9,5 @@
 }
 
 .height {
-  height: calc(100vh - 208px);
+  min-height: calc(100vh - 208px);
 }

@@ -1,15 +1,32 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import PostList from "@/components/PostList";
-import { useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useEffect, useState } from "react";
+import { useSession } from "next-auth/react";
 import AddPostForm from "@/components/AddPostForm";
+import axios from "axios";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   const [modal, setmodal] = useState(false);
   const { data: session } = useSession();
+
+  const url = "http://localhost:5000/posts";
+
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    await axios.get(url, data).then((res) => {
+      console.log(res.data);
+      setData(res.data);
+    });
+  };
+
+  useEffect(() => {
+    getData();
+    console.log(data);
+  }, []);
 
   const handleClick = () => {
     if (modal) {
@@ -46,7 +63,7 @@ export default function Home() {
               : "flex justify-center items-center text-center"
           }
         >
-          {modal ? <AddPostForm /> : <PostList />}
+          {modal ? <AddPostForm /> : <PostList data={data} setData={setData} />}
         </div>
       </div>
     </>
