@@ -1,11 +1,24 @@
 import React from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import axios from "axios";
+import { useRouter, Router } from "next/router";
+import Link from "next/link";
 
 const Card = ({ data, setData }) => {
   console.log(data, "CARD");
   const { data: session } = useSession();
 
-  const handleDelete = () => {};
+  const url = "http://localhost:5000/posts/";
+
+  const handleDelete = async (id) => {
+    console.log(id);
+    await axios.delete(url + id).then((res) => {
+      console.log(res);
+      if (res.status === 200) {
+        window.location.reload(true);
+      }
+    });
+  };
 
   return (
     <>
@@ -31,8 +44,21 @@ const Card = ({ data, setData }) => {
             </div>
             {session ? (
               <div className="flex justify-center items-end m-4">
+                <Link
+                  href={{
+                    pathname: "/details",
+                    query: item, // the data
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-auto m-3"
+                  >
+                    Read More
+                  </button>
+                </Link>
                 <button
-                  onClick={handleDelete}
+                  onClick={() => handleDelete(item._id)}
                   type="button"
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full my-auto"
                 >

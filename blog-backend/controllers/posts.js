@@ -11,7 +11,7 @@ const getPosts = async (req, res) => {
   }
 };
 
-export const getSinglePost = async (req, res) => {
+const getSinglePost = async (req, res) => {
   try {
     const { id: _id } = req.params;
     const post = await Post.findById(_id);
@@ -35,7 +35,7 @@ const createPosts = async (req, res) => {
   }
 };
 
-export const deletePost = async (req, res) => {
+const deletePost = async (req, res) => {
   const { id: _id } = req.params;
   try {
     const deletedPost = await Post.findByIdAndRemove(_id);
